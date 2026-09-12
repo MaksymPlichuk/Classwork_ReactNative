@@ -1,0 +1,115 @@
+ /$$$$$$$                                  /$$          /$$   /$$             /$$     /$$                          
+| $$__  $$                                | $$         | $$$ | $$            | $$    |__/                          
+| $$  \ $$  /$$$$$$   /$$$$$$   /$$$$$$$ /$$$$$$       | $$$$| $$  /$$$$$$  /$$$$$$   /$$ /$$    /$$ /$$$$$$       
+| $$$$$$$/ /$$__  $$ |____  $$ /$$_____/|_  $$_//$$$$$$| $$ $$ $$ |____  $$|_  $$_/  | $$|  $$  /$$//$$__  $$      
+| $$__  $$| $$$$$$$$  /$$$$$$$| $$        | $$ |______/| $$  $$$$  /$$$$$$$  | $$    | $$ \  $$/$$/| $$$$$$$$      
+| $$  \ $$| $$_____/ /$$__  $$| $$        | $$ /$$     | $$\  $$$ /$$__  $$  | $$ /$$| $$  \  $$$/ | $$_____/      
+| $$  | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$  |  $$$$/     | $$ \  $$|  $$$$$$$  |  $$$$/| $$   \  $/  |  $$$$$$$      
+|__/  |__/ \_______/ \_______/ \_______/   \___/       |__/  \__/ \_______/   \___/  |__/    \_/    \_______/      
+                                                                                                                   
+---------------------------------------------- 	
+01_Setting up Environtment
+
+React-Native  	--	розробка під IOS Android
+
++Треба включена віртуалізація		--Без нормальної апаратної віртуалізації emulator може працювати дуже повільно або взагалі мати проблеми із запуском.
+
+1. Поставити Android Studio -- https://developer.android.com/studio		Нативна частина (Native Side)
+	(XCODE для IOS)
+	
+https://reactnative.dev/docs/environment-setup
+	
+ngrok	--	розгортання додатку з локалхосту                                                                                                                   
+                                                                                                                   
+2. Поставити віртуальний девайс
+3. 	Налаштувавти SDK
+		Settings -> SDK Manager show package details
+		
+ ставимо
+
+-Android 15.0 ("Vanillalce Cream")
+	Android SDK Platform 35			--Це компоненти Android SDK для API 35 Вони потрібні, щоб компілювати Android-застосунок із використанням API 35.
+	Sources for Android 35			-- вихідний код Android API, який Android Studio може показувати тобі під час перегляду Android-класів.
+	
+	Google Play Intel x86_64 Atom System Image	--образ Android для емулятора.
+	
+-Створ новий проект
+	New project --> Empty views activity --> next
+	
+		Language: Java
+		Minimum SDK: API 24		--може запускатися з нижчого Android	(API Level ≠ API endpoint.)
+		Built in configuration: Kotlin
+		
+і додаємо справа Device Manager Pixel 9a
+API: 35 (Android 15)
+
+-Додаток VYSOR для того щоб запустити свій телефон на пк		
+	
+---------------------------------------------- 	
+02_React Native TS
+
+створити React-Native TS пишемо 	--	JS-частина (JavaScript Side)
+	npx create-expo-app@latest
+
+
+https://reactnative.dev/docs/set-up-your-environment
+
+Requirements:
+	node --version
+	java --version
+
+	
+	1. додаємо змінну середовища ANDROID_HOME
+		та пропис шлях із AndroidStudio -> tools -> SDK Manager
+	
+	зазвичай 
+		....\AppData\Local\Android\Sdk
+	
+	2. Додаємо до PATH
+			....\AppData\Local\Android\Sdk\platform-tools
+	
+	3. додаємо змінну JAVA_HOME
+		...ProgramFiles\Microsoft\jdk-17.0.19.10-hotspot\
+	
+
+Створення
+	npx create-expo-app@latest
+	
+		Expo go SDK 54	
+
+Запуск
+	npx expo start
+
+Щоб запустити проект власний проект на телефоні треба підлкючити комп і телефон до 1 мережі 
+
+	VYSOR для підлкючення екрану телефону 	(через провід)
+	npm expo start --tunnel  					(через QR)
+
+
+npm install --global @expo/ngrok@^4.1.0		--встановити ngrok для підключення з телефону
+
+для підключення з tunnel ще можна
+	скачати додаток expoGo
+
+
+Пофіксити помилки при запуску:
+	npm uninstall -g @expo/ngrok
+	npm install -g @expo/ngrok@^4.1.0
+	npx expo install @expo/ngrok@^4.1.0
+
+
+
+---------------------------------------------- 	
+03_NativeWind																											   
+		
+
+_layout.tsx	 ==		Main.tsx
+
+		
+NativeWind -- Tailwind для Native																												   
+https://www.nativewind.dev/																												   
+	
+
+< div >	    ==	< View >	
+< span >	==	< Text >																											   
+																												   
