@@ -141,8 +141,89 @@ React у вебі рендерить DOM-теги: <div>, <span>, <p>, <button>,
 React Native не має доступу до DOM — він рендерить нативні View-компоненти через "міст" (bridge/JSI) до iOS/Android нативних елементів.
  
 ---------------------------------------------- 	
-04_ 
+04_Forms
  
+ npx expo start		--запуск без QR
+ shift+A	--	додати девайс
  
+ для форм установ бібліотеки
  
+ npm i
+	zod
+	react-hook-form
+	@hookform/resolvers
+	
+	
+І створюємо типи для парсингу даних
+src/types/login
+		ILoginType.ts
+		ILoginResult.ts
  
+schemas/LoginSchema		--	шаблон для zod 
+
+##
+import { z } from "zod";
+
+export const LoginSchema = z
+    .object({
+        email: z
+            .email("Вкажіть правильно пошту"),
+        password: z
+            .string()
+            .min(6, "Пароль має мати 6 символів")
+    });
+##
+
+
+у index.ts
+
+export default function HomeScreen() {
+  
+  
+	const defaultValues: ILoginType = {
+			email: '',
+			password: '',
+		}
+	
+	const {control,handleSubmit,// reset,formState: {errors},} = useForm<ILoginType>({
+        resolver: zodResolver(LoginSchema),
+        defaultValues: defaultValues,
+    });
+	
+	const myOnSubmit = (data: ILoginType) => {
+        console.log("Login user in Form", data);
+    };
+	
+	return (
+	{/* Form */}
+                    <View className="rounded-2xl bg-[#1c1c1c] p-5">
+                        {/* Email */}
+                        <View className="mb-5">
+                            <Text className="mb-2 text-sm font-medium text-gray-300">
+                                Електронна пошта
+                            </Text>
+
+                            <Controller
+                                control={control}
+                                name="email"
+                                render={({ field: { onChange, onBlur, value } }) => (
+                                    <TextInput
+                                        value={value}
+                                        onChangeText={onChange}
+                                        onBlur={onBlur}
+                                        placeholder="Enter your email"
+                                        placeholderTextColor="#777"
+                                        keyboardType="email-address"
+                                        autoCapitalize="none"
+                                        className="rounded-xl border border-[#333] bg-[#242424] px-4 py-4 text-base text-white"
+                                    />
+                                )}
+                            />
+                            {errors.email && (
+                                <Text className="mt-1 text-xs text-red-500">{errors.email.message}</Text>
+                            )}
+                        </View>
+	
+---------------------------------------------- 	
+05_
+ 	
